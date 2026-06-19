@@ -1,115 +1,370 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Homework Hub</title>
+  <meta
+    name="description"
+    content="Private IELTS homework platform with premium writing and speaking practice."
+  />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<title>IELTS Homework Hub</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script defer src="data/writing.js"></script>
+  <script defer src="data/speaking.js"></script>
+  <script defer src="main.js"></script>
 </head>
-
 <body>
+  <div id="app-loader" class="app-loader" aria-hidden="true">
+    <div class="loader-core">
+      <div class="loader-ring"></div>
+      <div class="loader-ring loader-ring-delay"></div>
+      <div class="loader-word">IELTS Homework Hub</div>
+    </div>
+  </div>
 
-<div id="cursor"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <canvas id="three-bg" aria-hidden="true"></canvas>
 
-<canvas id="alphabet-bg"></canvas>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
 
-<header class="navbar">
+  <div class="page-transition" aria-hidden="true"></div>
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel glass">
+      <div class="search-header">
+        <h3>Quick Search</h3>
+        <button class="icon-btn" id="closeSearchBtn" aria-label="Close search">×</button>
+      </div>
+      <input id="searchInput" class="search-input" type="text" placeholder="Search writing or speaking..." />
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
 
-<div class="logo">
-IELTS Homework Hub
-</div>
+  <div class="command-palette" id="commandPalette" aria-hidden="true">
+    <div class="command-panel glass">
+      <div class="command-title">Command Palette</div>
+      <div class="command-items">
+        <button class="command-item" data-go="home">Go to Home</button>
+        <button class="command-item" data-go="writing">Go to Writing</button>
+        <button class="command-item" data-go="speaking">Go to Speaking</button>
+        <button class="command-item" data-action="theme">Toggle Theme</button>
+        <button class="command-item" data-action="search">Open Search</button>
+      </div>
+    </div>
+  </div>
 
-<nav class="nav-links">
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-<a onclick="showPage('home')">Home</a>
-<a onclick="showPage('writing')">Writing</a>
-<a onclick="showPage('speaking')">Speaking</a>
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar glass">
+      <div class="nav-left">
+        <button class="brand magnetic" data-go="home" aria-label="Go to home">
+          <span class="brand-mark"></span>
+          <span class="brand-text">
+            <strong>IELTS Homework Hub</strong>
+            <small>Private Practice Portal</small>
+          </span>
+        </button>
+      </div>
 
-<button id="themeToggle" class="theme-btn">
-🌙
-</button>
+      <div class="nav-center">
+        <button class="nav-link magnetic active" data-go="home">Home</button>
+        <button class="nav-link magnetic" data-go="writing">Writing</button>
+        <button class="nav-link magnetic" data-go="speaking">Speaking</button>
+      </div>
 
-</nav>
+      <div class="nav-right">
+        <button class="icon-btn magnetic" id="openSearchBtn" aria-label="Open search">
+          <span>⌘</span>
+        </button>
 
-</header>
+        <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-track">
+            <span class="theme-icon theme-sun">☀</span>
+            <span class="theme-thumb"></span>
+            <span class="theme-icon theme-moon">☾</span>
+          </span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-<section id="home" class="page active">
+  <main id="mainContent" class="main-shell">
+    <section id="home" class="page page-active">
+      <section class="hero section-shell">
+        <div class="hero-bg-ambient">
+          <span class="ambient ambient-1"></span>
+          <span class="ambient ambient-2"></span>
+          <span class="ambient ambient-3"></span>
+        </div>
 
-<div class="hero">
+        <div class="hero-layout">
+          <div class="hero-copy reveal">
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span>
+              <span>Private IELTS Mastery Space</span>
+            </div>
 
-<h1 class="hero-title">
-Practice IELTS With Precision
-</h1>
+            <h1 class="hero-title split-text">
+              Build fluent answers with
+              <span class="gradient-text">premium writing and speaking practice</span>
+            </h1>
 
-<p class="hero-sub">
-A private homework platform for writing and speaking practice.
-Designed for focused IELTS preparation.
-</p>
+            <p class="hero-description reveal">
+              A refined homework platform designed for private IELTS students.
+              Clean structure, beautiful readability, task-focused navigation,
+              elegant motion, and a premium learning atmosphere.
+            </p>
 
-<button class="cta magnetic">
-Start Practicing
-</button>
+            <div class="hero-cta reveal">
+              <button class="btn btn-primary magnetic pulse-cta" data-go="writing">
+                Explore Writing
+              </button>
+              <button class="btn btn-secondary magnetic" data-go="speaking">
+                Open Speaking
+              </button>
+            </div>
 
-</div>
+            <div class="hero-stats reveal">
+              <div class="stat-card glass tilt-card">
+                <span class="stat-number" data-counter="17">0</span>
+                <span class="stat-label">Writing Tasks</span>
+              </div>
+              <div class="stat-card glass tilt-card">
+                <span class="stat-number" data-counter="15">0</span>
+                <span class="stat-label">Speaking Cards</span>
+              </div>
+              <div class="stat-card glass tilt-card">
+                <span class="stat-number" data-counter="95">0</span>
+                <span class="stat-label">Performance Target</span>
+              </div>
+            </div>
+          </div>
 
-</section>
+          <div class="hero-visual reveal">
+            <div class="visual-anchor glass tilt-card">
+              <div class="visual-topline">Focused Learning Interface</div>
+              <div class="typewriter" id="typewriterText"></div>
 
-<section id="writing" class="page">
+              <div class="visual-panels">
+                <div class="floating-panel glass panel-1">
+                  <span class="panel-kicker">Writing</span>
+                  <strong>Formal / Informal / Semi-formal</strong>
+                  <small>Structured IELTS General Training practice</small>
+                </div>
 
-<h2 class="section-title">Writing Tasks 2026</h2>
+                <div class="floating-panel glass panel-2">
+                  <span class="panel-kicker">Speaking</span>
+                  <strong>B1 Cue Cards</strong>
+                  <small>IELTS-style prompts with follow-up flow</small>
+                </div>
 
-<div id="writingContainer" class="card-grid"></div>
+                <div class="floating-panel glass panel-3">
+                  <span class="panel-kicker">Design</span>
+                  <strong>Readable in Light & Dark</strong>
+                  <small>Contrast-first visual system</small>
+                </div>
+              </div>
 
-</section>
+              <svg class="hero-svg" viewBox="0 0 500 220" fill="none" aria-hidden="true">
+                <path
+                  class="svg-path"
+                  d="M20 170 C90 70, 150 70, 210 140 C270 210, 340 210, 470 80"
+                  stroke="url(#heroGradient)"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <defs>
+                  <linearGradient id="heroGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ff7a00" />
+                    <stop offset="100%" stop-color="#ffb86b" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section id="speaking" class="page">
+      <section class="feature-band section-shell reveal">
+        <div class="section-head">
+          <p class="section-kicker">Why this platform feels premium</p>
+          <h2>Designed to stay elegant, aligned, calm, and motivating</h2>
+        </div>
 
-<h2 class="section-title">Speaking Cue Cards</h2>
+        <div class="feature-grid">
+          <article class="feature-card glass tilt-card reveal">
+            <div class="feature-icon">✦</div>
+            <h3>Clarity-first typography</h3>
+            <p>Carefully tuned headings, spacing, line lengths, and contrast in both themes.</p>
+          </article>
 
-<div id="speakingContainer" class="card-grid"></div>
+          <article class="feature-card glass tilt-card reveal">
+            <div class="feature-icon">◉</div>
+            <h3>Desktop-focused layout</h3>
+            <p>Aligned cards, measured whitespace, balanced sections, and premium composition.</p>
+          </article>
 
-</section>
+          <article class="feature-card glass tilt-card reveal">
+            <div class="feature-icon">⌁</div>
+            <h3>Motion with discipline</h3>
+            <p>Rich animation language built with performance-friendly transforms and opacity.</p>
+          </article>
 
-<footer class="footer">
+          <article class="feature-card glass tilt-card reveal">
+            <div class="feature-icon">▣</div>
+            <h3>Teacher-ready structure</h3>
+            <p>Writing and speaking content remains easy to replace from separate data files.</p>
+          </article>
+        </div>
+      </section>
 
-<div class="footer-content">
+      <section class="showcase section-shell">
+        <div class="section-head reveal">
+          <p class="section-kicker">Practice flow</p>
+          <h2>Elegant study rhythm for every week</h2>
+        </div>
 
-<div>
-<h3>IELTS Homework Hub</h3>
-<p>Private IELTS practice resource for students.</p>
-</div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span class="timeline-index">01</span>
+            <div class="timeline-card glass">
+              <h3>Select a task</h3>
+              <p>Open a writing prompt or speaking cue card and focus on one complete response.</p>
+            </div>
+          </div>
 
-<div>
-<p>Writing Practice</p>
-<p>Speaking Practice</p>
-</div>
+          <div class="timeline-item reveal">
+            <span class="timeline-index">02</span>
+            <div class="timeline-card glass">
+              <h3>Practice with intention</h3>
+              <p>Use formal tone, structure, coherence, and direct language where needed.</p>
+            </div>
+          </div>
 
-<div>
-<p>2026 IELTS Training</p>
-</div>
+          <div class="timeline-item reveal">
+            <span class="timeline-index">03</span>
+            <div class="timeline-card glass">
+              <h3>Build confidence</h3>
+              <p>Return weekly, compare your answers, and improve fluency through repetition.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-</div>
+      <section class="cta-highlight section-shell reveal">
+        <div class="cta-box glass">
+          <div class="cta-copy">
+            <p class="section-kicker">Ready to begin?</p>
+            <h2>Choose your path and start with beautifully organized practice</h2>
+            <p>
+              Open the writing page for structured letters and complaints,
+              or the speaking page for cue cards in a clean IELTS format.
+            </p>
+          </div>
 
-</footer>
+          <div class="cta-actions">
+            <button class="btn btn-primary magnetic" data-go="writing">Go to Writing</button>
+            <button class="btn btn-secondary magnetic" data-go="speaking">Go to Speaking</button>
+          </div>
+        </div>
+      </section>
+    </section>
 
-<script src="data/writing.js"></script>
-<script src="data/speaking.js"></script>
+    <section id="writing" class="page">
+      <section class="inner-hero section-shell reveal">
+        <p class="section-kicker">Writing 2026</p>
+        <h1>Formal, informal, and semi-formal IELTS letter tasks</h1>
+        <p>
+          These cards are rendered directly from <code>data/writing.js</code>.
+          Replace, remove, or add tasks there whenever you want.
+        </p>
+      </section>
 
-<script src="js/navigation.js"></script>
-<script src="js/theme.js"></script>
-<script src="js/cursor.js"></script>
-<script src="js/cards.js"></script>
-<script src="js/scroll.js"></script>
-<script src="js/background.js"></script>
+      <section class="section-shell">
+        <div class="section-toolbar glass reveal">
+          <div>
+            <strong>Writing Collection</strong>
+            <span id="writingCount">0 tasks loaded</span>
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-mini magnetic" id="expandWritingBtn">Expand All</button>
+            <button class="btn btn-mini btn-secondary magnetic" id="collapseWritingBtn">Collapse All</button>
+          </div>
+        </div>
 
+        <div id="writingGrid" class="content-grid stacked-grid"></div>
+      </section>
+    </section>
+
+    <section id="speaking" class="page">
+      <section class="inner-hero section-shell reveal">
+        <p class="section-kicker">Speaking Practice</p>
+        <h1>IELTS-style cue cards with clean follow-up structure</h1>
+        <p>
+          These speaking prompts are rendered directly from <code>data/speaking.js</code>.
+          You can edit them anytime without touching the main layout.
+        </p>
+      </section>
+
+      <section class="section-shell">
+        <div class="section-toolbar glass reveal">
+          <div>
+            <strong>Speaking Collection</strong>
+            <span id="speakingCount">0 cards loaded</span>
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-mini magnetic" id="expandSpeakingBtn">Expand All</button>
+            <button class="btn btn-mini btn-secondary magnetic" id="collapseSpeakingBtn">Collapse All</button>
+          </div>
+        </div>
+
+        <div id="speakingGrid" class="content-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="footer-grid glass">
+      <div class="footer-col">
+        <h3>IELTS Homework Hub</h3>
+        <p>
+          A premium private practice space for elegant IELTS preparation,
+          focused on readability, structure, and calm high-end presentation.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <button class="footer-link" data-go="home">Home</button>
+        <button class="footer-link" data-go="writing">Writing</button>
+        <button class="footer-link" data-go="speaking">Speaking</button>
+      </div>
+
+      <div class="footer-col">
+        <h4>Content editing</h4>
+        <p>Writing topics: <code>data/writing.js</code></p>
+        <p>Speaking cards: <code>data/speaking.js</code></p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shortcuts</h4>
+        <p><kbd>Ctrl</kbd> + <kbd>K</kbd> opens command palette</p>
+        <p><kbd>/</kbd> opens search</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
