@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IELTS Homework Hub</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="cursor"></div>
+
+<canvas id="alphabet-bg"></canvas>
+
+<header class="navbar">
+
+<div class="logo">
+IELTS Homework Hub
+</div>
+
+<nav class="nav-links">
+
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('writing')">Writing</a>
+<a onclick="showPage('speaking')">Speaking</a>
+
+<button id="themeToggle" class="theme-btn">
+🌙
+</button>
+
+</nav>
+
+</header>
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h1 class="hero-title">
+Practice IELTS With Precision
+</h1>
+
+<p class="hero-sub">
+A private homework platform for writing and speaking practice.
+Designed for focused IELTS preparation.
+</p>
+
+<button class="cta magnetic">
+Start Practicing
+</button>
+
+</div>
+
+</section>
+
+<section id="writing" class="page">
+
+<h2 class="section-title">Writing Tasks 2026</h2>
+
+<div id="writingContainer" class="card-grid"></div>
+
+</section>
+
+<section id="speaking" class="page">
+
+<h2 class="section-title">Speaking Cue Cards</h2>
+
+<div id="speakingContainer" class="card-grid"></div>
+
+</section>
+
+<footer class="footer">
+
+<div class="footer-content">
+
+<div>
+<h3>IELTS Homework Hub</h3>
+<p>Private IELTS practice resource for students.</p>
+</div>
+
+<div>
+<p>Writing Practice</p>
+<p>Speaking Practice</p>
+</div>
+
+<div>
+<p>2026 IELTS Training</p>
+</div>
+
+</div>
+
+</footer>
+
+<script src="data/writing.js"></script>
+<script src="data/speaking.js"></script>
+
+<script src="js/navigation.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/cards.js"></script>
+<script src="js/scroll.js"></script>
+<script src="js/background.js"></script>
+
+</body>
+</html>
