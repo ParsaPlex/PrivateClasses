@@ -1,234 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>IELTS Practice Platform</title>
+<title>English Practice</title>
+<meta name="description" content="Writing and Speaking Practice">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
-<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-<script defer src="writing.js"></script>
-<script defer src="speaking.js"></script>
-<script defer src="main.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 </head>
 
-
 <body>
 
+<div id="progress"></div>
 
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
 
-<div id="three-bg"></div>
+<canvas id="bg"></canvas>
 
+<header class="navbar">
 
+<nav class="nav-inner">
 
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-
-
-<header class="header">
-
-<nav class="nav">
-
-<button class="nav-link" data-page="home">Home</button>
-<button class="nav-link" data-page="writing">Writing</button>
-<button class="nav-link" data-page="speaking">Speaking</button>
-
-<button id="open-search" class="search-btn">
-Search
-</button>
+<a href="#writing">Writing Practice</a>
+<a href="#speaking">Speaking Practice</a>
+<a class="contact" href="https://t.me/ParsaPlex" target="_blank">Contact</a>
 
 </nav>
 
 </header>
 
+<section class="hero">
 
-
-
-<div id="search-overlay">
-
-<div class="search-box">
-
-<input id="search-input" placeholder="Search topics...">
-
-<div id="search-results"></div>
-
-<button id="close-search">Close</button>
-
-</div>
-
-</div>
-
-
-
-
-<main>
-
-
-
-
-<section id="home" class="page active">
-
-
-
-<div class="hero-container">
-
-<div class="hero-card">
-
-<h1>IELTS Training Platform</h1>
-
-<p id="typewriter"></p>
-
-<div class="hero-benefits">
-
-<div class="benefit">
-Structured IELTS practice
-</div>
-
-<div class="benefit">
-Real exam style tasks
-</div>
-
-<div class="benefit">
-Private coaching available
-</div>
-
-<div class="benefit">
-Minimal distraction learning
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-
-
-<section class="section">
-
-<h2>Private Online Lessons</h2>
-
-<div class="grid-4">
-
-<div class="info-card">
-Personal speaking feedback
-</div>
-
-<div class="info-card">
-Band score improvement strategy
-</div>
-
-<div class="info-card">
-Real exam simulation
-</div>
-
-<div class="info-card">
-Flexible scheduling
-</div>
-
-</div>
+<h1 class="title">English Practice Studio</h1>
+<p class="subtitle">Writing & Speaking Training</p>
 
 </section>
 
+<section id="writing" class="section">
 
+<h2>Writing Task 1</h2>
 
-
-
-<section class="section">
-
-<h2>Why Use This Platform</h2>
-
-<div class="grid-4">
-
-<div class="info-card">
-40 IELTS Writing Tasks
-</div>
-
-<div class="info-card">
-30 Speaking Cue Cards
-</div>
-
-<div class="info-card">
-Follow‑up Questions Practice
-</div>
-
-<div class="info-card">
-Clean Minimal Interface
-</div>
-
-</div>
+<div id="writingCards" class="grid"></div>
 
 </section>
 
+<section id="speaking" class="section">
+
+<h2>Speaking Part 2</h2>
+
+<div id="speakingCards" class="grid"></div>
 
 </section>
 
+<footer>
 
-
-
-
-
-<section id="writing" class="page">
-
-<h2 class="page-title">
-IELTS Writing Task 1 Practice
-</h2>
-
-<div id="writing-container" class="cards-grid"></div>
-
-</section>
-
-
-
-
-
-<section id="speaking" class="page">
-
-<h2 class="page-title">
-IELTS Speaking Cue Cards
-</h2>
-
-<div id="speaking-container" class="cards-grid"></div>
-
-</section>
-
-
-
-
-</main>
-
-
-
-
-
-<footer class="footer">
-
-<a class="contact-btn" href="https://t.me/ParsaPlex" target="_blank">
-Contact Me
-</a>
-
-<p class="credit">
-Designed and coded by Parsaplex
-</p>
+DESIGNED AND CODED BY PARSAPLEX
 
 </footer>
 
-
-
+<script src="main.js"></script>
+<script src="writing.js"></script>
+<script src="speaking.js"></script>
 
 </body>
 </html>
