@@ -1,344 +1,377 @@
-(() => {
-"use strict";
+/* =========================
+   HELPERS
+========================= */
 
-const $ = (s,scope=document)=>scope.querySelector(s);
-const $$ = (s,scope=document)=>Array.from(scope.querySelectorAll(s));
+const $ = (s)=>document.querySelector(s)
+const $$ = (s)=>document.querySelectorAll(s)
 
-/* ---------------- PRELOADER ---------------- */
 
-function initLoader(){
 
-const loader=$("#app-loader");
-if(!loader) return;
-
-window.addEventListener("load",()=>{
-setTimeout(()=>{
-loader.classList.add("loaded");
-},500);
-});
-
-}
-
-/* ---------------- NAVIGATION ---------------- */
-
-let currentPage="home";
+/* =========================
+   ROUTER
+========================= */
 
 function showPage(id){
 
-if(!id || id===currentPage) return;
+$$(".page").forEach(p=>{
+p.classList.remove("active")
+})
 
-$$(".page").forEach(p=>p.classList.remove("page-active"));
+$("#"+id).classList.add("active")
 
-const target=document.getElementById(id);
-
-if(target){
-target.classList.add("page-active");
-currentPage=id;
-window.scrollTo({top:0,behavior:"smooth"});
-}
+window.scrollTo(0,0)
 
 }
 
-function initNavigation(){
+$$(".nav-link").forEach(btn=>{
 
-$$("[data-go]").forEach(btn=>{
 btn.addEventListener("click",()=>{
-showPage(btn.dataset.go);
-});
-});
 
-}
+const page = btn.dataset.page
+showPage(page)
 
-/* ---------------- TYPEWRITER ---------------- */
+})
 
-function initTypewriter(){
+})
 
-const el=$("#typewriterText");
-if(!el) return;
 
-const lines=[
-"Real language improves with real practice.",
-"Speak more. Write more. Learn faster.",
-"Consistent IELTS practice builds confidence.",
-"Fluency grows through daily language use."
-];
 
-let line=0;
-let char=0;
-let deleting=false;
+/* =========================
+   TYPEWRITER
+========================= */
 
-function tick(){
+const texts = [
 
-const text=lines[line];
+"Practice IELTS the smart way.",
+"Improve speaking with real cue cards.",
+"Train writing with real exam tasks.",
+"Prepare faster and score higher."
 
-if(!deleting){
+]
 
-char++;
-el.textContent=text.slice(0,char);
+let textIndex = 0
+let charIndex = 0
 
-if(char===text.length){
-deleting=true;
-setTimeout(tick,1400);
-return;
-}
+function type(){
+
+const el = $("#typewriter")
+
+if(!el) return
+
+const current = texts[textIndex]
+
+el.textContent = current.slice(0,charIndex)
+
+charIndex++
+
+if(charIndex>current.length){
+
+setTimeout(()=>{
+charIndex=0
+textIndex=(textIndex+1)%texts.length
+},1500)
 
 }else{
 
-char--;
-el.textContent=text.slice(0,char);
+setTimeout(type,45)
 
-if(char===0){
-deleting=false;
-line=(line+1)%lines.length;
 }
 
 }
 
-setTimeout(tick,deleting?35:55);
+type()
 
-}
 
-tick();
 
-}
+/* =========================
+   BUILD WRITING CARDS
+========================= */
 
-/* ---------------- WRITING CARDS ---------------- */
+function buildWriting(){
 
-function buildWritingCards(){
+const container = $("#writing-container")
 
-const container=$("#writing-container");
-if(!container) return;
+if(!container) return
 
-const data=window.writingTopics || [];
-container.innerHTML="";
+window.writingTopics.forEach(topic=>{
 
-data.forEach((topic,i)=>{
-
-const card=document.createElement("article");
-card.className="content-card";
+const card = document.createElement("div")
+card.className="card"
 
 card.innerHTML=`
 
-<div class="card-topline">Writing Task ${i+1}</div>
+<h3>${topic.title}</h3>
 
-<h3>${topic.title || "IELTS Writing Task"}</h3>
+<p>${topic.prompt}</p>
 
-<div class="card-body">
-<p>${topic.prompt || ""}</p>
-</div>
+`
 
-<div class="card-footer">
-<span class="tag">IELTS Writing</span>
-<span class="tag">Practice</span>
-</div>
+container.appendChild(card)
 
-`;
-
-container.appendChild(card);
-
-});
+})
 
 }
 
-/* ---------------- SPEAKING CARDS ---------------- */
+buildWriting()
 
-function buildSpeakingCards(){
 
-const container=$("#speaking-container");
-if(!container) return;
 
-const data=window.speakingCueCards || [];
-container.innerHTML="";
+/* =========================
+   BUILD SPEAKING CARDS
+========================= */
 
-data.forEach((card,i)=>{
+function buildSpeaking(){
 
-const points=card.points ||
-[card.point1,card.point2,card.point3,card.point4].filter(Boolean);
+const container = $("#speaking-container")
 
-const follow=card.followUpQuestions || [];
+if(!container) return
 
-const article=document.createElement("article");
-article.className="content-card";
+window.speakingCueCards.forEach((cardData,i)=>{
 
-article.innerHTML=`
+const card = document.createElement("div")
+card.className="card"
 
-<div class="card-topline">Cue Card ${i+1}</div>
+card.innerHTML=`
 
-<h3>${card.title || "Speaking Cue Card"}</h3>
-
-<div class="card-body">
-
-<p><strong>You should say:</strong></p>
+<h3>${cardData.title}</h3>
 
 <ul>
-${points.map(p=>`<li>${p}</li>`).join("")}
+<li>${cardData.point1}</li>
+<li>${cardData.point2}</li>
+<li>${cardData.point3}</li>
+<li>${cardData.point4}</li>
 </ul>
 
-<button class="btn-followup">Show Follow‑ups</button>
+<button class="follow-btn">Follow‑up Questions</button>
 
-<div class="followup-content hidden">
-${follow.length
-?follow.map(q=>`<div class="followup-item">${q}</div>`).join("")
-:`<div class="followup-item">No follow‑ups available yet.</div>`
-}
+<div class="follow-ups">
+
+<ul>
+<li>${cardData.followUpQuestions[0]}</li>
+<li>${cardData.followUpQuestions[1]}</li>
+<li>${cardData.followUpQuestions[2]}</li>
+<li>${cardData.followUpQuestions[3]}</li>
+</ul>
+
 </div>
 
-</div>
+`
 
-<div class="card-footer">
-<span class="tag">IELTS Speaking</span>
-<span class="tag">Cue Card</span>
-</div>
+container.appendChild(card)
 
-`;
-
-container.appendChild(article);
-
-});
+})
 
 }
 
-/* ---------------- FOLLOWUP TOGGLE ---------------- */
+buildSpeaking()
 
-function initFollowups(){
+
+
+/* =========================
+   FOLLOW UP TOGGLE
+========================= */
 
 document.addEventListener("click",(e)=>{
 
-const btn=e.target.closest(".btn-followup");
-if(!btn) return;
+if(e.target.classList.contains("follow-btn")){
 
-const card=btn.closest(".content-card");
-if(!card) return;
+const box = e.target.nextElementSibling
 
-const content=$(".followup-content",card);
-if(!content) return;
-
-content.classList.toggle("hidden");
-
-btn.textContent =
-content.classList.contains("hidden")
-? "Show Follow‑ups"
-: "Hide Follow‑ups";
-
-});
+box.classList.toggle("show")
 
 }
 
-/* ---------------- HEADER SCROLL ---------------- */
+})
 
-function initHeader(){
 
-const header=$("#siteHeader .navbar");
-if(!header) return;
 
-window.addEventListener("scroll",()=>{
-header.classList.toggle("is-scrolled",window.scrollY>20);
-},{passive:true});
+/* =========================
+   SEARCH SYSTEM
+========================= */
 
+const openSearch = $("#open-search")
+const closeSearch = $("#close-search")
+const overlay = $("#search-overlay")
+const input = $("#search-input")
+const results = $("#search-results")
+
+openSearch.onclick=()=>{
+overlay.classList.add("active")
+input.focus()
 }
 
-/* ---------------- SEARCH ---------------- */
+closeSearch.onclick=()=>{
+overlay.classList.remove("active")
+input.value=""
+results.innerHTML=""
+}
 
-function initSearch(){
+input.addEventListener("input",()=>{
 
-const open=$("#openSearchBtn");
-const close=$("#closeSearchBtn");
-const overlay=$("#searchOverlay");
-const input=$("#searchInput");
-const results=$("#searchResults");
+const q = input.value.toLowerCase()
 
-if(!open || !overlay) return;
+results.innerHTML=""
 
-open.addEventListener("click",()=>{
-overlay.classList.add("open");
-input.focus();
-});
+if(q.length<2) return
 
-close?.addEventListener("click",()=>{
-overlay.classList.remove("open");
-});
 
-overlay.addEventListener("click",(e)=>{
-if(e.target===overlay) overlay.classList.remove("open");
-});
+const writing = window.writingTopics.filter(t=>
+t.title.toLowerCase().includes(q)
+)
 
-input?.addEventListener("input",()=>{
+const speaking = window.speakingCueCards.filter(t=>
+t.title.toLowerCase().includes(q)
+)
 
-const q=input.value.toLowerCase().trim();
-results.innerHTML="";
+writing.forEach(t=>{
 
-if(!q) return;
+const item=document.createElement("div")
+item.className="search-item"
+item.textContent="Writing: "+t.title
 
-const writing=window.writingTopics || [];
-const speaking=window.speakingCueCards || [];
-
-writing.forEach((t,i)=>{
-if((t.title||"").toLowerCase().includes(q) || (t.prompt||"").toLowerCase().includes(q)){
-const item=document.createElement("button");
-item.className="search-item";
-item.textContent="Writing: "+(t.title || ("Task "+(i+1)));
 item.onclick=()=>{
-overlay.classList.remove("open");
-showPage("writing");
-};
-results.appendChild(item);
+overlay.classList.remove("active")
+showPage("writing")
 }
-});
 
-speaking.forEach((t,i)=>{
-if((t.title||"").toLowerCase().includes(q)){
-const item=document.createElement("button");
-item.className="search-item";
-item.textContent="Speaking: "+(t.title || ("Cue Card "+(i+1)));
+results.appendChild(item)
+
+})
+
+
+speaking.forEach(t=>{
+
+const item=document.createElement("div")
+item.className="search-item"
+item.textContent="Speaking: "+t.title
+
 item.onclick=()=>{
-overlay.classList.remove("open");
-showPage("speaking");
-};
-results.appendChild(item);
-}
-});
-
-});
-
+overlay.classList.remove("active")
+showPage("speaking")
 }
 
-/* ---------------- REVEAL ANIMATION ---------------- */
+results.appendChild(item)
 
-function initReveal(){
+})
 
-const items=$$(".reveal");
+})
 
-if(!items.length) return;
 
-const obs=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-e.target.classList.add("revealed");
-obs.unobserve(e.target);
+
+/* =========================
+   CURSOR PHYSICS
+========================= */
+
+const dot = $(".cursor-dot")
+const ring = $(".cursor-ring")
+
+let mouseX=0
+let mouseY=0
+
+let ringX=0
+let ringY=0
+
+document.addEventListener("mousemove",(e)=>{
+
+mouseX=e.clientX
+mouseY=e.clientY
+
+dot.style.left=mouseX+"px"
+dot.style.top=mouseY+"px"
+
+})
+
+function animateCursor(){
+
+ringX += (mouseX-ringX)*0.15
+ringY += (mouseY-ringY)*0.15
+
+ring.style.left=ringX+"px"
+ring.style.top=ringY+"px"
+
+requestAnimationFrame(animateCursor)
+
 }
-});
-},{threshold:0.12});
 
-items.forEach(el=>obs.observe(el));
+animateCursor()
+
+
+
+/* =========================
+   THREE BACKGROUND
+========================= */
+
+const scene = new THREE.Scene()
+
+const camera = new THREE.PerspectiveCamera(
+
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+
+)
+
+const renderer = new THREE.WebGLRenderer({
+alpha:true
+})
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+document.getElementById("three-bg").appendChild(renderer.domElement)
+
+
+
+const particles = 200
+
+const geometry = new THREE.BufferGeometry()
+
+const positions = new Float32Array(particles*3)
+
+for(let i=0;i<particles*3;i++){
+
+positions[i]=(Math.random()-0.5)*60
 
 }
 
-/* ---------------- BOOT ---------------- */
+geometry.setAttribute(
+"position",
+new THREE.BufferAttribute(positions,3)
+)
 
-function boot(){
+const material = new THREE.PointsMaterial({
+color:0x4ea1ff,
+size:0.2
+})
 
-initLoader();
-initNavigation();
-initHeader();
-initSearch();
-buildWritingCards();
-buildSpeakingCards();
-initFollowups();
-initReveal();
-initTypewriter();
+const mesh = new THREE.Points(geometry,material)
+
+scene.add(mesh)
+
+camera.position.z=20
+
+
+
+function animate(){
+
+requestAnimationFrame(animate)
+
+mesh.rotation.y+=0.0007
+mesh.rotation.x+=0.0004
+
+renderer.render(scene,camera)
 
 }
 
-document.addEventListener("DOMContentLoaded",boot);
+animate()
 
-})();
+
+
+window.addEventListener("resize",()=>{
+
+camera.aspect = window.innerWidth/window.innerHeight
+camera.updateProjectionMatrix()
+
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+})
