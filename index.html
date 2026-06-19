@@ -1,134 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>IELTS Homework Hub | Private Training</title>
-<meta name="description" content="A dedicated platform for IELTS private students.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<title>IELTS Practice</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script defer src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-<script defer src="data/writing.js"></script>
-<script defer src="data/speaking.js"></script>
-<script defer src="main.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
+<!-- PRELOADER -->
+
 <div id="app-loader" class="app-loader">
 <div class="loader-core">
 <div class="loader-ring"></div>
-<div class="loader-word">Preparing Your Session...</div>
+<div class="loader-word">Preparing your session...</div>
 </div>
 </div>
 
+
+<!-- BACKGROUND -->
+
+<div id="three-bg"></div>
 <div class="noise-overlay"></div>
 <div class="grid-overlay"></div>
-<canvas id="three-bg"></canvas>
+
+
+<!-- CURSOR -->
 
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
-<div class="search-overlay" id="searchOverlay">
-<div class="search-panel glass">
 
-<div class="search-header">
-<h3>Quick Find</h3>
-<button class="icon-btn" id="closeSearchBtn">×</button>
-</div>
+<!-- HEADER -->
 
-<input id="searchInput" class="search-input" type="text" placeholder="Search topics or keywords...">
-
-<div id="searchResults" class="search-results"></div>
-
-</div>
-</div>
-
-<header class="site-header" id="siteHeader">
+<header id="siteHeader" class="site-header">
 
 <nav class="navbar glass">
 
 <div class="nav-left">
-<button class="brand magnetic" data-go="home">
-<span class="brand-text"><strong>IELTS Hub</strong></span>
-</button>
+<a class="brand">IELTS Lab</a>
 </div>
 
 <div class="nav-center">
-<button class="nav-link magnetic active" data-go="home">Home</button>
-<button class="nav-link magnetic" data-go="writing">Writing</button>
-<button class="nav-link magnetic" data-go="speaking">Speaking</button>
+
+<button class="nav-link active" data-go="home">Home</button>
+
+<button class="nav-link" data-go="writing">Writing</button>
+
+<button class="nav-link" data-go="speaking">Speaking</button>
+
 </div>
 
 <div class="nav-right">
-<button class="icon-btn magnetic" id="openSearchBtn">🔍</button>
+
+<button class="icon-btn" id="openSearchBtn">
+Search
+</button>
+
 </div>
 
 </nav>
 
 </header>
 
-<main id="mainContent" class="main-shell">
 
-<section id="home" class="page page-active">
 
-<section class="hero section-shell">
+<!-- SEARCH -->
 
-<div class="hero-layout">
+<div id="searchOverlay" class="search-overlay">
 
-<div class="hero-copy reveal">
+<div class="search-box glass">
+
+<input id="searchInput" placeholder="Search topics...">
+
+<div id="searchResults"></div>
+
+<button id="closeSearchBtn">Close</button>
+
+</div>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<main class="main-shell">
+
+
+<!-- HOME -->
+
+<section id="home" class="page page-active hero">
+
+<div class="section-shell hero-layout">
+
+<div class="hero-text">
 
 <h1 class="hero-title">
-Master IELTS through <span class="text-gradient">Focused Practice.</span>
+
+<span class="text-gradient">IELTS Practice</span>
+
 </h1>
 
-<p class="hero-description reveal">
-Practice consistently, get real feedback, and develop the skills needed for high IELTS scores. This platform is designed for serious learners who want measurable progress.
+<p class="hero-description">
+
+Improve your English with structured IELTS Writing and Speaking practice.
+
 </p>
 
-<div class="hero-cta reveal">
-<button class="btn btn-primary magnetic" data-go="writing">Start Writing</button>
-<button class="btn btn-secondary magnetic" data-go="speaking">Start Speaking</button>
-</div>
+<div class="hero-cta">
 
-</div>
+<button class="btn btn-primary" data-go="writing">
+Start Writing
+</button>
 
-<div class="hero-visual reveal">
-
-<div class="visual-anchor glass">
-
-<div class="visual-topline">Practice Dashboard</div>
-
-<div class="typewriter" id="typewriterText"></div>
-
-<div class="visual-panels">
-
-<div class="floating-panel glass panel-1">
-<strong>Structured Writing Flow</strong>
-<small>Guided tasks with focused feedback.</small>
-</div>
-
-<div class="floating-panel glass panel-2">
-<strong>Speaking Simulations</strong>
-<small>Realistic prompts for IELTS speaking practice.</small>
-</div>
-
-<div class="floating-panel glass panel-3">
-<strong>Targeted Progress</strong>
-<small>Exercises designed for band improvement.</small>
-</div>
+<button class="btn btn-secondary" data-go="speaking">
+Practice Speaking
+</button>
 
 </div>
 
 </div>
+
+
+<div class="hero-visual glass">
+
+<div class="visual-topline">
+Daily language training
+</div>
+
+<div id="typewriterText" class="typewriter"></div>
 
 </div>
 
@@ -136,109 +145,90 @@ Practice consistently, get real feedback, and develop the skills needed for high
 
 </section>
 
-<section class="feature-band section-shell reveal">
 
-<div class="section-head">
-<h2>Premium Coaching Benefits</h2>
-</div>
 
-<div class="feature-grid">
-
-<article class="feature-card glass">
-<h3>Personalized Training</h3>
-<p>Each exercise is chosen to strengthen your weak points and build confidence.</p>
-</article>
-
-<article class="feature-card glass">
-<h3>Immediate Feedback</h3>
-<p>Your mistakes are analyzed quickly so improvement becomes faster and clearer.</p>
-</article>
-
-<article class="feature-card glass">
-<h3>Exam Strategy</h3>
-<p>Learn the structures and techniques used by Band 8+ candidates.</p>
-</article>
-
-<article class="feature-card glass">
-<h3>Flexible Learning</h3>
-<p>Practice anytime and keep improving between your private sessions.</p>
-</article>
-
-</div>
-
-</section>
-
-</section>
+<!-- WRITING -->
 
 <section id="writing" class="page">
 
 <div class="section-shell">
 
-<div class="page-header">
 <h2>Writing Practice</h2>
-<p>Select a topic and start developing your essay.</p>
-</div>
 
-<div id="writing-container" class="cards-wrapper grid-layout"></div>
+<div id="writing-container" class="cards-wrapper"></div>
 
 </div>
 
 </section>
+
+
+
+<!-- SPEAKING -->
 
 <section id="speaking" class="page">
 
 <div class="section-shell">
 
-<div class="page-header">
-<h2>Speaking Practice</h2>
-<p>Use these cue cards to simulate real IELTS speaking tasks.</p>
-</div>
+<h2>Speaking Cue Cards</h2>
 
-<div id="speaking-container" class="cards-wrapper grid-layout"></div>
+<div id="speaking-container" class="cards-wrapper"></div>
 
 </div>
 
 </section>
 
+
+
 </main>
+
+
+
+<!-- FOOTER -->
 
 <footer class="site-footer">
 
-<div class="footer-overlay"></div>
+<div class="section-shell footer-grid glass">
 
-<div class="section-shell">
+<div>
 
-<div class="footer-grid glass">
+<div class="footer-logo">IELTS Lab</div>
 
-<div class="footer-info">
-<h3 class="footer-logo">IELTS Homework Hub</h3>
-<p>A focused learning space designed for private IELTS students who want consistent improvement and real exam readiness.</p>
+<p>
+Practice IELTS speaking and writing with modern tools.
+</p>
+
 </div>
 
-<div class="footer-links">
-<h4>Navigation</h4>
-<button class="footer-link" data-go="home">Home</button>
-<button class="footer-link" data-go="writing">Writing</button>
-<button class="footer-link" data-go="speaking">Speaking</button>
+<div>
+
+<h4>Sections</h4>
+
+<a class="footer-link" data-go="home">Home</a>
+<a class="footer-link" data-go="writing">Writing</a>
+<a class="footer-link" data-go="speaking">Speaking</a>
+
 </div>
 
 <div class="footer-cta-box">
-<h4>Private Lessons</h4>
-<p>Interested in one‑to‑one IELTS coaching?</p>
-<a href="https://t.me/ParsaPlex" target="_blank" class="btn btn-telegram magnetic">
-<span>Contact on Telegram</span>
-</a>
-</div>
 
-</div>
+<h4>Need help?</h4>
 
-<div class="footer-bottom">
-<p>© 2026 IELTS Homework Hub</p>
+<button class="btn-telegram">
+Telegram Support
+</button>
+
 </div>
 
 </div>
 
 </footer>
+
+
+
+<script src="writing.js"></script>
+<script src="speaking.js"></script>
+
+<script src="main.js"></script>
 
 </body>
 </html>
