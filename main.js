@@ -4,49 +4,65 @@
 const $ = (s,scope=document)=>scope.querySelector(s);
 const $$ = (s,scope=document)=>Array.from(scope.querySelectorAll(s));
 
-const state={
-currentPage:"home",
-reducedMotion:window.matchMedia("(prefers-reduced-motion: reduce)").matches
-};
+/* ---------------- PRELOADER ---------------- */
 
-const pageTransition=$(".page-transition");
+function initLoader(){
+
+const loader=document.getElementById("app-loader");
+if(!loader) return;
+
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+loader.classList.add("loaded");
+},500);
+});
+
+}
 
 /* ---------------- NAVIGATION ---------------- */
 
+let currentPage="home";
+
 function showPage(id){
-if(!id||id===state.currentPage)return;
 
-pageTransition?.classList.add("active");
+if(!id || id===currentPage) return;
 
-setTimeout(()=>{
-$$(".page").forEach(p=>p.classList.remove("page-active"));
+const pages=$$(".page");
+
+pages.forEach(p=>p.classList.remove("page-active"));
+
 const target=document.getElementById(id);
+
 if(target){
 target.classList.add("page-active");
-state.currentPage=id;
+currentPage=id;
 window.scrollTo({top:0,behavior:"smooth"});
 }
-setTimeout(()=>pageTransition?.classList.remove("active"),200);
-},180);
+
 }
 
 function initNavigation(){
+
 $$("[data-go]").forEach(btn=>{
-btn.addEventListener("click",()=>showPage(btn.dataset.go));
+btn.addEventListener("click",()=>{
+showPage(btn.dataset.go);
 });
+});
+
 }
 
 /* ---------------- TYPEWRITER ---------------- */
 
 function initTypewriter(){
+
 const el=$("#typewriterText");
-if(!el)return;
+if(!el) return;
 
 const lines=[
 "Real language improves with real practice.",
-"Speak. Write. Repeat.",
-"Daily IELTS practice builds fluency.",
-"Confidence comes from using the language."
+"Speak more. Write more. Learn faster.",
+"Consistent IELTS practice builds confidence.",
+"Fluency comes from using the language daily."
 ];
 
 let line=0;
@@ -54,18 +70,22 @@ let char=0;
 let deleting=false;
 
 function tick(){
+
 const text=lines[line];
 
 if(!deleting){
+
 char++;
 el.textContent=text.slice(0,char);
 
 if(char===text.length){
 deleting=true;
-setTimeout(tick,1400);
+setTimeout(tick,1500);
 return;
 }
+
 }else{
+
 char--;
 el.textContent=text.slice(0,char);
 
@@ -73,20 +93,25 @@ if(char===0){
 deleting=false;
 line=(line+1)%lines.length;
 }
+
 }
 
 setTimeout(tick,deleting?40:60);
+
 }
 
 tick();
+
 }
 
 /* ---------------- WRITING CARDS ---------------- */
 
 function buildWritingCards(){
 
-const container=$("#writing-container")||$("#writingGrid");
-if(!container||!Array.isArray(window.writingTopics))return;
+const container=$("#writing-container") || $("#writingGrid");
+
+if(!container) return;
+if(!Array.isArray(window.writingTopics)) return;
 
 container.innerHTML="";
 
@@ -96,16 +121,22 @@ const card=document.createElement("article");
 card.className="content-card";
 
 card.innerHTML=`
-<div class="card-topline">Writing Task ${i+1}</div>
 
-<h3>${topic.title||"Writing Task"}</h3>
+<div class="card-topline">
+Writing Task ${i+1}
+</div>
 
-<p>${topic.prompt||""}</p>
+<h3>${topic.title || "Writing Task"}</h3>
+
+<p>
+${topic.prompt || ""}
+</p>
 
 <div class="card-footer">
 <span class="tag">IELTS Writing</span>
-<span class="tag">Task Practice</span>
+<span class="tag">Practice</span>
 </div>
+
 `;
 
 container.appendChild(card);
@@ -118,25 +149,30 @@ container.appendChild(card);
 
 function buildSpeakingCards(){
 
-const container=$("#speaking-container")||$("#speakingGrid");
-if(!container||!Array.isArray(window.speakingCueCards))return;
+const container=$("#speaking-container") || $("#speakingGrid");
+
+if(!container) return;
+if(!Array.isArray(window.speakingCueCards)) return;
 
 container.innerHTML="";
 
 window.speakingCueCards.forEach((card,i)=>{
 
-const points=card.points||
+const points=card.points ||
 [card.point1,card.point2,card.point3,card.point4].filter(Boolean);
 
-const follow=card.followUpQuestions||[];
+const follow=card.followUpQuestions || [];
 
 const article=document.createElement("article");
 article.className="content-card";
 
 article.innerHTML=`
-<div class="card-topline">Cue Card ${i+1}</div>
 
-<h3>${card.title||"Speaking Cue Card"}</h3>
+<div class="card-topline">
+Cue Card ${i+1}
+</div>
+
+<h3>${card.title || "Speaking Cue Card"}</h3>
 
 <p><strong>You should say:</strong></p>
 
@@ -144,12 +180,14 @@ article.innerHTML=`
 ${points.map(p=>`<li>${p}</li>`).join("")}
 </ul>
 
-<button class="btn-followup magnetic">Show Follow‑ups</button>
+<button class="btn-followup">
+Show Follow‑ups
+</button>
 
 <div class="followup-content hidden">
 ${follow.length
 ?follow.map(q=>`<div class="followup-item">${q}</div>`).join("")
-:`<div class="followup-item">Follow‑up questions can be added in data/speaking.js</div>`
+:`<div class="followup-item">No follow‑ups added yet.</div>`
 }
 </div>
 
@@ -157,6 +195,7 @@ ${follow.length
 <span class="tag">IELTS Speaking</span>
 <span class="tag">Cue Card</span>
 </div>
+
 `;
 
 container.appendChild(article);
@@ -172,47 +211,21 @@ function initFollowups(){
 document.addEventListener("click",(e)=>{
 
 const btn=e.target.closest(".btn-followup");
-if(!btn)return;
+if(!btn) return;
 
 const card=btn.closest(".content-card");
 const content=$(".followup-content",card);
 
-if(!content)return;
+if(!content) return;
 
 content.classList.toggle("hidden");
 
 btn.textContent=
 content.classList.contains("hidden")
-?"Show Follow‑ups"
-:"Hide Follow‑ups";
+? "Show Follow‑ups"
+: "Hide Follow‑ups";
 
 });
-
-}
-
-/* ---------------- REVEAL ANIMATION ---------------- */
-
-function initReveal(){
-
-const items=$$(".reveal");
-
-if(!items.length)return;
-
-if(state.reducedMotion||!("IntersectionObserver"in window)){
-items.forEach(el=>el.classList.add("revealed"));
-return;
-}
-
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-e.target.classList.add("revealed");
-observer.unobserve(e.target);
-}
-});
-},{threshold:.15});
-
-items.forEach(el=>observer.observe(el));
 
 }
 
@@ -221,9 +234,10 @@ items.forEach(el=>observer.observe(el));
 function initHeader(){
 
 const header=$("#siteHeader .navbar");
+if(!header) return;
 
 window.addEventListener("scroll",()=>{
-header?.classList.toggle("is-scrolled",window.scrollY>20);
+header.classList.toggle("is-scrolled",window.scrollY>20);
 },{passive:true});
 
 }
@@ -232,12 +246,12 @@ header?.classList.toggle("is-scrolled",window.scrollY>20);
 
 function boot(){
 
+initLoader();
 initNavigation();
 initHeader();
 buildWritingCards();
 buildSpeakingCards();
 initFollowups();
-initReveal();
 initTypewriter();
 
 }
