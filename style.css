@@ -1285,3 +1285,151 @@ body.light .theme-thumb {
     width: min(var(--max), calc(100% - 1.2rem));
   }
 }
+/* ==========================================================================
+   PARSA'S CUSTOM ENHANCEMENTS (Dynamic Cards & Professional Footer)
+   ========================================================================== */
+
+/* 1. Dynamic Card Grid Fix */
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* 2. Enhanced Professional Footer */
+.site-footer {
+    position: relative;
+    margin-top: 5rem;
+    padding-bottom: 3rem;
+    overflow: hidden;
+}
+
+.footer-grid.glass {
+    grid-template-columns: 1.5fr 0.8fr 1.2fr; /* Optimized for 3 columns */
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.07));
+    border: 1px solid var(--line);
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+}
+
+.footer-cta-box {
+    background: rgba(255, 122, 0, 0.05);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--accent-soft);
+    text-align: center;
+}
+
+.btn-telegram {
+    background: #0088cc; /* Telegram Blue */
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 136, 204, 0.3);
+}
+
+.btn-telegram:hover {
+    background: #0099e5;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 136, 204, 0.4);
+}
+
+/* 3. Speaking Follow-up System */
+.followup-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: var(--radius-xl);
+    animation: fadeIn 0.8s ease;
+}
+
+.btn-followup {
+    background: var(--surface-2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    transition: all var(--trans-med);
+}
+
+.btn-followup:hover {
+    background: var(--accent);
+    color: #111;
+    box-shadow: var(--glow);
+}
+
+.followup-content {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    text-align: left;
+}
+
+.followup-item {
+    padding: 1.2rem;
+    background: var(--bg-elev);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideInRight 0.5s forwards;
+}
+
+.followup-item strong {
+    color: var(--accent-2);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* 4. Animations */
+@keyframes slideInRight {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* 5. Gradient Accent for Titles */
+.text-gradient {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* 6. Fix for Writing/Speaking Cards (ensure they match your image) */
+.content-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-action-btn {
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+    .footer-grid.glass {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+}
