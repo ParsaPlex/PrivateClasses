@@ -6,66 +6,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>IELTS Practice</title>
+<title>IELTS Practice Platform</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<script defer src="writing.js"></script>
+<script defer src="speaking.js"></script>
+<script defer src="main.js"></script>
 
 </head>
 
+
 <body>
 
-<!-- PRELOADER -->
 
-<div id="app-loader" class="app-loader">
-<div class="loader-core">
-<div class="loader-ring"></div>
-<div class="loader-word">Preparing your session...</div>
-</div>
-</div>
-
-
-<!-- BACKGROUND -->
 
 <div id="three-bg"></div>
-<div class="noise-overlay"></div>
-<div class="grid-overlay"></div>
 
 
-<!-- CURSOR -->
 
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
 
-<!-- HEADER -->
 
-<header id="siteHeader" class="site-header">
+<header class="header">
 
-<nav class="navbar glass">
+<nav class="nav">
 
-<div class="nav-left">
-<a class="brand">IELTS Lab</a>
-</div>
+<button class="nav-link" data-page="home">Home</button>
+<button class="nav-link" data-page="writing">Writing</button>
+<button class="nav-link" data-page="speaking">Speaking</button>
 
-<div class="nav-center">
-
-<button class="nav-link active" data-go="home">Home</button>
-
-<button class="nav-link" data-go="writing">Writing</button>
-
-<button class="nav-link" data-go="speaking">Speaking</button>
-
-</div>
-
-<div class="nav-right">
-
-<button class="icon-btn" id="openSearchBtn">
+<button id="open-search" class="search-btn">
 Search
 </button>
-
-</div>
 
 </nav>
 
@@ -73,17 +55,60 @@ Search
 
 
 
-<!-- SEARCH -->
 
-<div id="searchOverlay" class="search-overlay">
+<div id="search-overlay">
 
-<div class="search-box glass">
+<div class="search-box">
 
-<input id="searchInput" placeholder="Search topics...">
+<input id="search-input" placeholder="Search topics...">
 
-<div id="searchResults"></div>
+<div id="search-results"></div>
 
-<button id="closeSearchBtn">Close</button>
+<button id="close-search">Close</button>
+
+</div>
+
+</div>
+
+
+
+
+<main>
+
+
+
+
+<section id="home" class="page active">
+
+
+
+<div class="hero-container">
+
+<div class="hero-card">
+
+<h1>IELTS Training Platform</h1>
+
+<p id="typewriter"></p>
+
+<div class="hero-benefits">
+
+<div class="benefit">
+Structured IELTS practice
+</div>
+
+<div class="benefit">
+Real exam style tasks
+</div>
+
+<div class="benefit">
+Private coaching available
+</div>
+
+<div class="benefit">
+Minimal distraction learning
+</div>
+
+</div>
 
 </div>
 
@@ -91,54 +116,28 @@ Search
 
 
 
-<!-- MAIN -->
-
-<main class="main-shell">
 
 
-<!-- HOME -->
+<section class="section">
 
-<section id="home" class="page page-active hero">
+<h2>Private Online Lessons</h2>
 
-<div class="section-shell hero-layout">
+<div class="grid-4">
 
-<div class="hero-text">
-
-<h1 class="hero-title">
-
-<span class="text-gradient">IELTS Practice</span>
-
-</h1>
-
-<p class="hero-description">
-
-Improve your English with structured IELTS Writing and Speaking practice.
-
-</p>
-
-<div class="hero-cta">
-
-<button class="btn btn-primary" data-go="writing">
-Start Writing
-</button>
-
-<button class="btn btn-secondary" data-go="speaking">
-Practice Speaking
-</button>
-
+<div class="info-card">
+Personal speaking feedback
 </div>
 
+<div class="info-card">
+Band score improvement strategy
 </div>
 
-
-<div class="hero-visual glass">
-
-<div class="visual-topline">
-Daily language training
+<div class="info-card">
+Real exam simulation
 </div>
 
-<div id="typewriterText" class="typewriter"></div>
-
+<div class="info-card">
+Flexible scheduling
 </div>
 
 </div>
@@ -147,35 +146,66 @@ Daily language training
 
 
 
-<!-- WRITING -->
+
+
+<section class="section">
+
+<h2>Why Use This Platform</h2>
+
+<div class="grid-4">
+
+<div class="info-card">
+40 IELTS Writing Tasks
+</div>
+
+<div class="info-card">
+30 Speaking Cue Cards
+</div>
+
+<div class="info-card">
+Follow‑up Questions Practice
+</div>
+
+<div class="info-card">
+Clean Minimal Interface
+</div>
+
+</div>
+
+</section>
+
+
+</section>
+
+
+
+
+
 
 <section id="writing" class="page">
 
-<div class="section-shell">
+<h2 class="page-title">
+IELTS Writing Task 1 Practice
+</h2>
 
-<h2>Writing Practice</h2>
-
-<div id="writing-container" class="cards-wrapper"></div>
-
-</div>
+<div id="writing-container" class="cards-grid"></div>
 
 </section>
 
 
 
-<!-- SPEAKING -->
+
 
 <section id="speaking" class="page">
 
-<div class="section-shell">
+<h2 class="page-title">
+IELTS Speaking Cue Cards
+</h2>
 
-<h2>Speaking Cue Cards</h2>
-
-<div id="speaking-container" class="cards-wrapper"></div>
-
-</div>
+<div id="speaking-container" class="cards-grid"></div>
 
 </section>
+
 
 
 
@@ -183,52 +213,22 @@ Daily language training
 
 
 
-<!-- FOOTER -->
 
-<footer class="site-footer">
 
-<div class="section-shell footer-grid glass">
+<footer class="footer">
 
-<div>
+<a class="contact-btn" href="https://t.me/ParsaPlex" target="_blank">
+Contact Me
+</a>
 
-<div class="footer-logo">IELTS Lab</div>
-
-<p>
-Practice IELTS speaking and writing with modern tools.
+<p class="credit">
+Designed and coded by Parsaplex
 </p>
-
-</div>
-
-<div>
-
-<h4>Sections</h4>
-
-<a class="footer-link" data-go="home">Home</a>
-<a class="footer-link" data-go="writing">Writing</a>
-<a class="footer-link" data-go="speaking">Speaking</a>
-
-</div>
-
-<div class="footer-cta-box">
-
-<h4>Need help?</h4>
-
-<button class="btn-telegram">
-Telegram Support
-</button>
-
-</div>
-
-</div>
 
 </footer>
 
 
 
-<script src="writing.js"></script>
-<script src="speaking.js"></script>
-
-<script src="main.js"></script>
 
 </body>
 </html>
