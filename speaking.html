@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Practice English Speaking with customizable topic cards.">
+    <title>Speaking Hub | FluencyPro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-galaxy">
+    <div class="glow-orb orb-1"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Fluency<span>Pro</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="writing.html" class="nav-link">Writing</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="page-header">
+            <h1>Speaking Cards</h1>
+            <p>Select a topic card, study follow-up questions, and track your answer duration.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-panel glass-card">
+            <div class="search-box">
+                <input type="text" id="speakingSearch" placeholder="Search prompts or topics...">
+            </div>
+            <div class="filter-selectors">
+                <select id="topicFilter">
+                    <option value="all">All Topics</option>
+                </select>
+                <select id="levelFilter">
+                    <option value="all">All Levels</option>
+                    <option value="B1">B1 (Intermediate)</option>
+                    <option value="B2">B2 (Upper-Intermediate)</option>
+                    <option value="C1">C1 (Advanced)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid" id="speakingGrid">
+            <!-- Cards will be injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Practice Detail Modal (Wow effect transition) -->
+    <div class="modal-overlay" id="practiceModal">
+        <div class="modal-content glass-card">
+            <button class="modal-close-btn" id="closeModal">&times;</button>
+            <div class="modal-badge" id="modalTopic">Topic</div>
+            <h2 id="modalTitle">Topic Title</h2>
+            
+            <div class="modal-body">
+                <div class="practice-instruction">
+                    <h3>Cue Card Prompt</h3>
+                    <p id="modalPrompt" class="prompt-highlight">Prompt text goes here...</p>
+                </div>
+                
+                <div class="modal-grid-info">
+                    <div class="follow-up-section">
+                        <h3>Useful Vocabulary & Idioms</h3>
+                        <ul id="modalVocabulary" class="vocab-list">
+                            <!-- Injected -->
+                        </ul>
+                    </div>
+
+                    <!-- Timer Widget -->
+                    <div class="timer-widget">
+                        <h3>Speech Timer</h3>
+                        <div class="timer-display" id="timerDisplay">02:00</div>
+                        <div class="timer-progress-bar">
+                            <div class="timer-progress" id="timerProgress"></div>
+                        </div>
+                        <div class="timer-controls">
+                            <button class="btn-timer" id="startTimer">Start</button>
+                            <button class="btn-timer sec" id="resetTimer">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/speaking.js"></script>
+</body>
+</html>
