@@ -724,24 +724,128 @@ const practiceData = {
             ]
         }
     ],
-    writing: [
-        {
-            id: 1,
-            type: "Formal",
-            situation: "You recently stayed at a luxury hotel and faced multiple issues including slow service and a noisy room. Write a letter to the hotel general manager. Describe the problems in detail and request a partial refund.",
-            guideline: "State your purpose clearly. Use a formal greeting and sign-off. Ensure you cover all bullet points."
-        },
-        {
-            id: 2,
-            type: "Informal",
-            situation: "A close friend from abroad is planning to visit your home city next month. Write a letter to them suggesting the best sights to see, what clothing to pack, and invite them to stay at your place.",
-            guideline: "Keep the tone warm and friendly. Use contractions (e.g. I'm, you'd). Use casual sign-offs like 'Best wishes'."
-        },
-        {
-            id: 3,
-            type: "Semi-Formal",
-            situation: "Your neighbor’s dog barks constantly at night, preventing you from sleeping. Write a polite but firm letter to your neighbor explaining the situation and asking them to take action.",
-            guideline: "Maintain a respectful yet serious tone. Present a clear request for a compromise."
-        }
-    ]
+   writing: [
+    {
+        id: 1,
+        type: "Formal",
+        situation: "You recently purchased an electronic device from an online store, but it arrived damaged and does not work properly. Write a letter to the customer service department. In your letter, describe the item you bought, explain the problem, and say what action you would like the company to take.",
+        guideline: "Use a formal tone. Clearly describe the product and the issue. Request a refund, replacement, or repair politely."
+    },
+    {
+        id: 2,
+        type: "Formal",
+        situation: "You attended a training course organized by your company, but you were dissatisfied with the quality of the course. Write a letter to the training manager. In your letter, explain which course you attended, describe what was wrong with it, and suggest how it could be improved.",
+        guideline: "Use formal language. Be specific about the problems and provide constructive suggestions."
+    },
+    {
+        id: 3,
+        type: "Formal",
+        situation: "You have seen an advertisement for a job that you are interested in. Write a letter to the employer. In your letter, say which job you are applying for, describe your relevant experience, and explain why you are suitable for the position.",
+        guideline: "Use a professional and persuasive tone. Mention qualifications, skills, and availability."
+    },
+    {
+        id: 4,
+        type: "Formal",
+        situation: "You recently stayed at a hotel and were unhappy with the service you received. Write a letter to the hotel manager. In your letter, describe when you stayed there, explain the problems you experienced, and say what you would like the manager to do.",
+        guideline: "Use a formal complaint style. Include dates, clear details, and a reasonable request."
+    },
+    {
+        id: 5,
+        type: "Formal",
+        situation: "Your local council is planning to close a public library in your area. Write a letter to the council. In your letter, explain why the library is important, describe how the closure would affect local people, and suggest an alternative solution.",
+        guideline: "Use a formal and respectful tone. Support your opinion with logical reasons."
+    },
+    {
+        id: 6,
+        type: "Formal",
+        situation: "You recently used a public transport service and had a negative experience because of delays and poor customer service. Write a letter to the transport company. In your letter, describe your journey, explain what went wrong, and say what improvement you expect.",
+        guideline: "Use formal complaint language. Be direct but polite, and explain the impact of the problem."
+    },
+    {
+        id: 7,
+        type: "Formal",
+        situation: "You want to enroll in a course at a college but need more information before applying. Write a letter to the admissions office. In your letter, say which course you are interested in, ask about the course details, and request information about fees and entry requirements.",
+        guideline: "Use a formal inquiry format. Ask clear and organized questions."
+    },
+
+    {
+        id: 8,
+        type: "Semi-Formal",
+        situation: "You borrowed an important book from your teacher, but you accidentally damaged it. Write a letter to your teacher. In your letter, apologize for the damage, explain how it happened, and offer to replace or pay for the book.",
+        guideline: "Use a polite and respectful tone. Since you know the person, the style should be semi-formal."
+    },
+    {
+        id: 9,
+        type: "Semi-Formal",
+        situation: "Your neighbor often plays loud music late at night, and this is disturbing your sleep. Write a letter to your neighbor. In your letter, explain the problem, describe how it affects you, and suggest a possible solution.",
+        guideline: "Use a polite but firm tone. Avoid sounding aggressive."
+    },
+    {
+        id: 10,
+        type: "Semi-Formal",
+        situation: "You recently moved into a new apartment and want to invite your neighbors to a small gathering. Write a letter to your neighbors. In your letter, introduce yourself, explain why you are holding the gathering, and invite them to attend.",
+        guideline: "Use a friendly but respectful tone. Give details such as date, time, and place."
+    },
+    {
+        id: 11,
+        type: "Semi-Formal",
+        situation: "You are taking a class, but you will not be able to attend for two weeks because of a family emergency. Write a letter to your instructor. In your letter, explain the situation, apologize for your absence, and ask how you can catch up with the lessons.",
+        guideline: "Use a respectful tone. Explain the situation clearly without too much personal detail."
+    },
+    {
+        id: 12,
+        type: "Semi-Formal",
+        situation: "A colleague helped you complete an important project at work. Write a letter to your colleague. In your letter, thank them for their help, explain how their support helped you, and suggest meeting to celebrate the success.",
+        guideline: "Use a warm but professional tone. Express appreciation clearly."
+    },
+    {
+        id: 13,
+        type: "Semi-Formal",
+        situation: "You recently attended a local community event and would like to give feedback to the organizer. Write a letter to the organizer. In your letter, say which event you attended, explain what you enjoyed, and suggest one improvement for future events.",
+        guideline: "Use a polite semi-formal tone. Balance positive feedback with a helpful suggestion."
+    },
+    {
+        id: 14,
+        type: "Semi-Formal",
+        situation: "You rent an apartment, and there is a problem with the heating system. Write a letter to your landlord. In your letter, describe the problem, explain how it is affecting you, and ask the landlord to repair it as soon as possible.",
+        guideline: "Use a respectful but clear tone. State the problem and request action."
+    },
+
+    {
+        id: 15,
+        type: "Informal",
+        situation: "A friend has invited you to visit them in another city, but you cannot go on the planned date. Write a letter to your friend. In your letter, thank them for the invitation, explain why you cannot visit, and suggest another time to meet.",
+        guideline: "Use a friendly and casual tone. Contractions and informal expressions are appropriate."
+    },
+    {
+        id: 16,
+        type: "Informal",
+        situation: "Your friend is planning to start learning English and has asked for your advice. Write a letter to your friend. In your letter, explain why learning English is useful, suggest some study methods, and recommend useful resources.",
+        guideline: "Use an encouraging and friendly tone. Give practical advice."
+    },
+    {
+        id: 17,
+        type: "Informal",
+        situation: "You recently went on a holiday and stayed at a place your friend recommended. Write a letter to your friend. In your letter, thank them for the recommendation, describe what you enjoyed, and tell them about one memorable experience.",
+        guideline: "Use a relaxed and personal tone. Include emotions and specific details."
+    },
+    {
+        id: 18,
+        type: "Informal",
+        situation: "Your friend has just moved to a new house. Write a letter to your friend. In your letter, congratulate them, ask about the new place, and suggest visiting them soon.",
+        guideline: "Use casual language. Keep the tone warm and supportive."
+    },
+    {
+        id: 19,
+        type: "Informal",
+        situation: "You borrowed a camera from your friend, but you accidentally left it at a restaurant. Write a letter to your friend. In your letter, apologize, explain what happened, and say what you are doing to get it back.",
+        guideline: "Use a sincere and friendly tone. Apologize clearly and explain your plan."
+    },
+    {
+        id: 20,
+        type: "Informal",
+        situation: "A friend is coming to visit your city for the first time. Write a letter to your friend. In your letter, tell them what places they should visit, suggest what clothes to bring, and invite them to stay with you.",
+        guideline: "Use an enthusiastic and friendly tone. Give useful local advice."
+    }
+]
 };
