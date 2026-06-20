@@ -795,28 +795,6 @@ h1, h2, h3, h4 {
     transform-origin: left;
 }
 
-/* Contact Button */
-.contact-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #229ED9, #0088cc);
-    color: #ffffff !important;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 8px 20px rgba(0, 136, 204, 0.25);
-}
-
-.contact-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 136, 204, 0.35);
-    background: linear-gradient(135deg, #2AABEE, #0088cc);
-}
-
 @keyframes shineText {
     to {
         background-position: 200% center;
