@@ -723,8 +723,7 @@ const practiceData = {
                 "Future-proof (Verb/Adj) - To prepare for future changes"
             ]
         }
-    ]
-],
+    ],
     writing: [
         {
             id: 1,
