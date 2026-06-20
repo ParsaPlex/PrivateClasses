@@ -89,10 +89,16 @@
             document.getElementById('daily-prompt').textContent = daily.prompt.substring(0, 160) + '...';
             document.getElementById('daily-type').textContent = daily.label;
             
-            document.getElementById('daily-btn').addEventListener('click', () => {
+                   document.getElementById('daily-btn').addEventListener('click', () => {
                 window.location.href = daily.target;
             });
         });
     </script>
+
+    <footer class="site-footer">
+        <p class="footer-credit">
+            Designed and coded by <span>ParsaPlex</span>
+        </p>
+    </footer>
 </body>
 </html>
