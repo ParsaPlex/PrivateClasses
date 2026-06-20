@@ -1,77 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>English Practice</title>
-<meta name="description" content="Writing and Speaking Practice">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Speaking and Writing Practice platform for English learners.">
+    <title>FluencyPro | Elevate Your English</title>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Fonts Preload & Load for Performance (Lighthouse) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
+<body class="bg-galaxy">
 
-<body>
+    <!-- Global Glowing Accents for Visual Depth -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
 
-<div id="progress"></div>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Fluency<span>Pro</span></a>
+            <nav class="nav-links">
+                <a href="speaking.html" class="nav-link">Speaking Practice</a>
+                <a href="writing.html" class="nav-link">Writing Practice</a>
+            </nav>
+        </div>
+    </header>
 
-<div id="cursor"></div>
-<div id="cursor-dot"></div>
+    <main class="hero-section">
+        <div class="container text-center">
+            <span class="badge">Designed for Active Learners</span>
+            <h1 class="hero-title animate-gradient">Master Speaking & Writing</h1>
+            <p class="hero-subtitle">
+                An interactive, premium card-based training engine. Filter topics, practice with smart timers, and craft high-scoring IELTS letters.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="speaking.html" class="btn btn-primary">
+                    <span>Practice Speaking</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </a>
+                <a href="writing.html" class="btn btn-secondary">
+                    <span>IELTS Task 1 Writing</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </a>
+            </div>
+        </div>
+    </main>
 
-<canvas id="bg"></canvas>
+    <!-- Daily Interactive Widget -->
+    <section class="container daily-widget-container">
+        <div class="glass-card daily-challenge">
+            <div class="daily-header">
+                <div class="daily-badge">💡 Daily Challenge</div>
+                <h3 id="daily-title">Generating your challenge...</h3>
+            </div>
+            <p id="daily-prompt" class="daily-text">Loading the prompt of the day...</p>
+            <div class="daily-footer">
+                <span id="daily-type" class="badge-type">Type</span>
+                <button id="daily-btn" class="btn-sm">Try Now</button>
+            </div>
+        </div>
+    </section>
 
-<header class="navbar">
+    <footer class="footer">
+        <p>&copy; 2026 FluencyPro. Built for high-scorers.</p>
+    </footer>
 
-<nav class="nav-inner">
-
-<a href="#writing">Writing Practice</a>
-<a href="#speaking">Speaking Practice</a>
-<a class="contact" href="https://t.me/ParsaPlex" target="_blank">Contact</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1 class="title">English Practice Studio</h1>
-<p class="subtitle">Writing & Speaking Training</p>
-
-</section>
-
-<section id="writing" class="section">
-
-<h2>Writing Task 1</h2>
-
-<div id="writingCards" class="grid"></div>
-
-</section>
-
-<section id="speaking" class="section">
-
-<h2>Speaking Part 2</h2>
-
-<div id="speakingCards" class="grid"></div>
-
-</section>
-
-<footer>
-
-DESIGNED AND CODED BY PARSAPLEX
-
-</footer>
-
-<script src="main.js"></script>
-<script src="writing.js"></script>
-<script src="speaking.js"></script>
-
+    <!-- Script for Daily Challenge on Home -->
+    <script src="js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const speakingPrompts = practiceData.speaking;
+            const writingPrompts = practiceData.writing;
+            const allPrompts = [
+                ...speakingPrompts.map(p => ({...p, target: 'speaking.html', label: 'Speaking Practice'})),
+                ...writingPrompts.map(p => ({...p, target: 'writing.html', label: 'IELTS Writing Task 1', topic: p.type, prompt: p.situation}))
+            ];
+            
+            // Deterministic random based on current date
+            const dayIndex = new Date().getDate() % allPrompts.length;
+            const daily = allPrompts[dayIndex];
+            
+            document.getElementById('daily-title').textContent = daily.topic;
+            document.getElementById('daily-prompt').textContent = daily.prompt.substring(0, 160) + '...';
+            document.getElementById('daily-type').textContent = daily.label;
+            
+            document.getElementById('daily-btn').addEventListener('click', () => {
+                window.location.href = daily.target;
+            });
+        });
+    </script>
 </body>
 </html>
