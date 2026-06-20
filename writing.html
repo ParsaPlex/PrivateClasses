@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IELTS General Task 1 writing simulator with integrated character counter.">
+    <title>Writing Lab | FluencyPro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-galaxy">
+    <div class="glow-orb orb-2"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Fluency<span>Pro</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="speaking.html" class="nav-link">Speaking</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="page-header text-center">
+            <h1>IELTS Writing Task 1 Simulator</h1>
+            <p>Select a letter type, read the prompt, and write your essay under the standard 20-minute timer.</p>
+        </div>
+
+        <div class="writing-layout">
+            <!-- Left Side: Prompt Selector & Details -->
+            <div class="writing-prompts-sidebar">
+                <div class="filter-panel glass-card">
+                    <select id="letterTypeFilter">
+                        <option value="all">All Letter Types</option>
+                        <option value="Formal">Formal</option>
+                        <option value="Semi-Formal">Semi-Formal</option>
+                        <option value="Informal">Informal</option>
+                    </select>
+                </div>
+                <div class="prompts-list" id="writingList">
+                    <!-- Injected -->
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Editor Workspace -->
+            <div class="writing-workspace glass-card" id="writingWorkspace" style="display: none;">
+                <div class="workspace-header">
+                    <div>
+                        <span class="badge" id="selectedLetterType">Formal Letter</span>
+                        <h2 id="selectedLetterTopic">Letter Subject</h2>
+                    </div>
+                    <div class="writing-timer">
+                        <span>Timer:</span>
+                        <div id="writingTimerDisplay">20:00</div>
+                    </div>
+                </div>
+
+                <div class="prompt-detail-box">
+                    <p id="selectedLetterPrompt">Prompt text...</p>
+                </div>
+
+                <div class="text-editor-container">
+                    <textarea id="writingTextarea" placeholder="Type your letter here (Minimum 150 words)..."></textarea>
+                    
+                    <div class="editor-stats">
+                        <div class="stat-pill">Words: <strong id="wordCounter">0</strong></div>
+                        <div class="stat-pill">Minimum: <strong>150</strong></div>
+                        <button id="toggleTimerBtn" class="btn-timer btn-action-timer">Start Timer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/writing.js"></script>
+</body>
+</html>
