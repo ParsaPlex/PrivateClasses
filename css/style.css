@@ -674,3 +674,35 @@ h1, h2, h3, h4 {
         flex-direction: column;
     }
 }
+/* --- Footer --- */
+
+.site-footer {
+    text-align: center;
+    padding: 40px 20px 30px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-credit {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+}
+
+.footer-credit span {
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #22d3ee,
+        #a78bfa
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    font-weight: 700;
+    text-shadow: 0 0 14px rgba(139,92,246,0.35);
+}
