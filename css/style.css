@@ -674,35 +674,92 @@ h1, h2, h3, h4 {
         flex-direction: column;
     }
 }
-/* --- Footer --- */
 
+/* --- Ultra-Premium Footer By ParsaPlex --- */
 .site-footer {
-    text-align: center;
-    padding: 40px 20px 30px;
-    margin-top: 80px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    width: 100%;
+    padding: 60px 20px 40px;
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.footer-divider {
+    width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
+    margin-bottom: 10px;
 }
 
 .footer-credit {
     font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    letter-spacing: 0.08em;
-    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+    cursor: default;
 }
 
-.footer-credit span {
 
+.premium-name {
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+    /* گرادینت متحرک روی متن */
     background: linear-gradient(
-        135deg,
-        #8b5cf6,
-        #22d3ee,
-        #a78bfa
+        to right, 
+        #8b5cf6, 
+        #22d3ee, 
+        #d8b4fe, 
+        #8b5cf6
     );
-
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
+    animation: shineText 3s linear infinite;
+}
 
-    font-weight: 700;
-    text-shadow: 0 0 14px rgba(139,92,246,0.35);
+
+.premium-name::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+.footer-credit:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-credit:hover .premium-name::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+@keyframes shineText {
+    to {
+        background-position: 200% center;
+    }
 }
