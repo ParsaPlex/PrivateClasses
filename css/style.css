@@ -801,193 +801,57 @@ h1, h2, h3, h4 {
     }
 }
 
-/* =================================================
-   PROFESSIONAL RESPONSIVE PATCH
-   Non-destructive / HTML untouched
-   Optimized for Mobile & Tablet
-================================================= */
+/* =================================
+   HARD DEVICE LOCK (Desktop Only)
+================================= */
 
-/* ---------- Fluid Typography ---------- */
-
-.hero-title{
-    font-size: clamp(2rem, 4vw, 3.4rem);
+.device-lock-overlay{
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #0f172a, #020617);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999999;
+    text-align: center;
+    padding: 40px;
+    font-family: 'Inter', sans-serif;
+    pointer-events: all;
 }
 
-.hero-subtitle{
-    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+.device-lock-box{
+    max-width: 420px;
+    padding: 40px 32px;
+    border-radius: 22px;
+    background: rgba(15,23,42,0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 40px rgba(34,211,238,0.2);
 }
 
-.logo{
-    font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+.device-lock-emoji{
+    font-size: 52px;
+    margin-bottom: 18px;
 }
 
-/* ---------- Container Safety ---------- */
-
-.container{
-    width: min(1200px, 92%);
-    margin-inline: auto;
+.device-lock-box h2{
+    font-size: 1.6rem;
+    margin-bottom: 12px;
 }
 
-/* ---------- Buttons Touch Optimization ---------- */
-
-.btn{
-    min-height: 44px;
+.device-lock-box p{
+    opacity: .8;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-.btn span{
-    white-space: nowrap;
+/* Disable all interaction underneath */
+body.device-locked{
+    overflow: hidden !important;
 }
 
-/* ---------- Tablet Layout ---------- */
-
-@media (max-width: 1024px){
-
-    .hero-section{
-        padding-top: 110px;
-        padding-bottom: 90px;
-    }
-
-    .nav-container{
-        gap: 18px;
-    }
-
-    .nav-links{
-        gap: 18px;
-    }
-
-    .hero-actions{
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .daily-widget-container{
-        margin-top: 30px;
-    }
-
-    .daily-challenge{
-        padding: 26px;
-    }
-
-}
-
-/* ---------- Mobile Layout ---------- */
-
-@media (max-width: 768px){
-
-    .navbar{
-        padding: 14px 18px;
-    }
-
-    .nav-container{
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-    }
-
-    .nav-links{
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .hero-section{
-        padding-top: 90px;
-        padding-bottom: 70px;
-    }
-
-    .hero-title{
-        max-width: 90%;
-        margin-inline: auto;
-        line-height: 1.15;
-    }
-
-    .hero-subtitle{
-        max-width: 520px;
-        margin-inline: auto;
-        padding-inline: 6px;
-    }
-
-    .hero-actions{
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        gap: 14px;
-        margin-top: 24px;
-    }
-
-    .btn{
-        width: min(320px, 90%);
-        justify-content: center;
-    }
-
-    .daily-widget-container{
-        padding-inline: 16px;
-    }
-
-}
-
-/* ---------- Small Phones ---------- */
-
-@media (max-width: 480px){
-
-    .hero-title{
-        font-size: 1.8rem;
-    }
-
-    .hero-subtitle{
-        font-size: 0.92rem;
-    }
-
-    .badge{
-        font-size: 0.68rem;
-        padding: 6px 10px;
-    }
-
-    .btn{
-        font-size: 0.92rem;
-        padding: 12px 16px;
-    }
-
-    .daily-challenge{
-        padding: 20px;
-    }
-
-}
-
-/* ---------- Ultra Small Devices ---------- */
-
-@media (max-width: 360px){
-
-    .hero-title{
-        font-size: 1.6rem;
-    }
-
-}
-
-/* ---------- Landscape Phones ---------- */
-
-@media (max-height: 500px) and (orientation: landscape){
-
-    .hero-section{
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
-
-}
-
-/* ---------- Prevent Overflow Issues ---------- */
-
-img,
-svg,
-video{
-    max-width: 100%;
-    height: auto;
-}
-
-/* ---------- Better Text Wrapping ---------- */
-
-.hero-title,
-.hero-subtitle{
-    text-wrap: balance;
+body.device-locked > *:not(.device-lock-overlay){
+    filter: blur(6px);
+    pointer-events: none !important;
+    user-select: none !important;
 }
